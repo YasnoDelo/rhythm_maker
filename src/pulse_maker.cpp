@@ -23,14 +23,14 @@ int main()
     null_putter(arr_of_symb, file_elems);
 
     size_t schitano = fread(arr_of_symb, sizeof(char), file_elems, sorted_words);
-    printf("Read %zu elems\n", schitano);
+    //printf("Read %zu elems\n", schitano);
 
     if(schitano != file_elems)
     {
         printf(RED("\n\nRead less or more elements then needed\n"));
     }
 
-    printf("\n\namount_of_words = %zu\nfile_elems = %zu\nam_of_boarder = %d\n\n", amount_of_words, file_elems, am_of_boarder);
+    //printf("\n\namount_of_words = %zu\nfile_elems = %zu\nam_of_boarder = %d\n\n", amount_of_words, file_elems, am_of_boarder);
 
     bond_make(arr_of_words_info, arr_of_symb, amount_of_words, file_elems);
 

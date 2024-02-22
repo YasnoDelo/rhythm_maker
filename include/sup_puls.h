@@ -446,41 +446,6 @@ char* word_search_acc(int syllables, int len_min, int len_max, int accent, int* 
     return 0;
 }
 
-void dump(int fst, int sec, int rand, int syll_count, int end_of_arr_flag, int word_beg, int words_count, int* transl_ritm, int size, char** arr_of_words)
-{
-
-    printf(RED("BEGIN ") GREEN("of debug output\n"));
-    printf("fst = %d\t", fst);
-    printf("sec = %d\n", sec);
-    printf("syll_count = %d:\n\n", syll_count);
-
-    debug_puts(transl_ritm, size, syll_count);
-
-    printf("\nrand = %d\n", rand);
-    printf("word_beg = %d\n", word_beg);
-    printf("end_of_arr_flag = %d\n", end_of_arr_flag);
-    printf("words_count = %d\n", words_count);
-
-    if(arr_of_words[0] != 0)
-    {
-        printf("Already found words:");
-
-        for(int count = 0; arr_of_words[count] != 0; count++)
-        {
-            kvazi_puts(arr_of_words[count]);
-            putchar('\n');
-        }
-    }
-    else
-    {
-        printf("No wornd recognized\n");
-    }
-
-    printf(RED("END ") GREEN("of debug output\n"));
-
-    getchar();
-}
-
 char** seporater_finder (int* transl_ritm, int size_of_plot, int how_many_words, Words* arr_of_words_info, int* arr_of_syllable, int* true_am_of_words)
 {
     char** arr_of_words = (char**)calloc(how_many_words + 2, sizeof(char*));
@@ -499,57 +464,32 @@ char** seporater_finder (int* transl_ritm, int size_of_plot, int how_many_words,
         fst = 0;
         sec = 0;
 
-        //Iteration_Count = 0;
-
         while(1)
         {
-            //Iteration_Count++;
-            //printf("Iteration_Count = %d\n", Iteration_Count);
-
             if((transl_ritm[syll_count] == 0) && (end_of_arr_flag == 0))
             {
-
-                //printf("We are in if(transl_ritm[syll_count] == 0)\n");
-
-                //dump(fst, sec, rand, syll_count, end_of_arr_flag, word_beg, words_count, transl_ritm, size_of_plot, arr_of_words);
-
                 if(syll_count > size_of_plot - 1)
                 {
                     end_of_arr_flag = 1;
                 }
 
                 syll_count++;
-
-                //dump(fst, sec, rand, syll_count, end_of_arr_flag, word_beg, words_count, transl_ritm, size_of_plot, arr_of_words);
-
                 continue;
             }
             else
             {
                 if(fst == 0)
                 {
-                    //printf("We are in if(fst == 0)\n");
-
-                    //dump(fst, sec, rand, syll_count, end_of_arr_flag, word_beg, words_count, transl_ritm, size_of_plot, arr_of_words);
-
                     fst = syll_count;
 
                     if(syll_count == 0)
                     {
                         fst = -1;
                     }
-
-                    //dump(fst, sec, rand, syll_count, end_of_arr_flag, word_beg, words_count, transl_ritm, size_of_plot, arr_of_words);
                 }
                 else if((sec == 0) && (syll_count <= size_of_plot - 1))
                 {
-                    //printf("We are in else if(sec == 0)\n");
-
-                    //dump(fst, sec, rand, syll_count, end_of_arr_flag, word_beg, words_count, transl_ritm, size_of_plot, arr_of_words);
-
-                    sec = syll_count;
-
-                    //dump(fst, sec, rand, syll_count, end_of_arr_flag, word_beg, words_count, transl_ritm, size_of_plot, arr_of_words);
+                  sec = syll_count;
                 }
                 else
                 {
@@ -558,27 +498,14 @@ char** seporater_finder (int* transl_ritm, int size_of_plot, int how_many_words,
 
                 if((sec == 0) && (syll_count >= size_of_plot - 1))
                 {
-                    //printf("We are in if((syll_count == size_of_plot - 1) && (sec == 0))\n");
-
-                    //dump(fst, sec, rand, syll_count, end_of_arr_flag, word_beg, words_count, transl_ritm, size_of_plot, arr_of_words);
-
                     end_of_arr_flag = 1;
-
-                    //dump(fst, sec, rand, syll_count, end_of_arr_flag, word_beg, words_count, transl_ritm, size_of_plot, arr_of_words);
                 }
 
                 syll_count++;
-                //printf(GREEN("Right now syll_count++\n\n"));
-
-                //dump(fst, sec, rand, syll_count, end_of_arr_flag, word_beg, words_count, transl_ritm, size_of_plot, arr_of_words);
             }
 
             if(sec != 0)
             {
-                //printf("We are in if(sec != 0)\n");
-
-                //dump(fst, sec, rand, syll_count, end_of_arr_flag, word_beg, words_count, transl_ritm, size_of_plot, arr_of_words);
-
                 if(fst == -1)
                 {
                     fst = 0;
@@ -593,7 +520,7 @@ char** seporater_finder (int* transl_ritm, int size_of_plot, int how_many_words,
                 }
                 else
                 {
-                    printf(GREEN("Was found word with parametrs:\n%d syllables in long\naccent on %d syllable\n"), rand, fst - word_beg + 1);
+                    //printf(GREEN("Was found word with parametrs:\n%d syllables in long\naccent on %d syllable\n"), rand, fst - word_beg + 1);
                 }
                 words_count++;
 
@@ -606,10 +533,6 @@ char** seporater_finder (int* transl_ritm, int size_of_plot, int how_many_words,
 
             if(end_of_arr_flag == 1)
             {
-                //printf("We are in if(end_of_arr_flag == 1)\n");
-
-                //dump(fst, sec, rand, syll_count, end_of_arr_flag, word_beg, words_count, transl_ritm, size_of_plot, arr_of_words);
-
                 if(fst == -1)
                 {
                     fst = 0;
@@ -623,21 +546,14 @@ char** seporater_finder (int* transl_ritm, int size_of_plot, int how_many_words,
                 }
                 else
                 {
-                    printf(GREEN("Was found word with parametrs:\n%d syllables in long\naccent on %d syllable\n"), size_of_plot - word_beg, fst - word_beg + 1);
+                    //printf(GREEN("Was found word with parametrs:\n%d syllables in long\naccent on %d syllable\n"), size_of_plot - word_beg, fst - word_beg + 1);
                 }
-
-                //dump(fst, sec, rand, syll_count, end_of_arr_flag, word_beg, words_count, transl_ritm, size_of_plot, arr_of_words);
-
                 break;
              }
         }
 
         if(end_of_arr_flag == 1)
         {
-            //printf("We are in if (end_of_arr_flag == 1)" RED("out of fst circ\n"));
-
-            //dump(fst, sec, rand, syll_count, end_of_arr_flag, word_beg, words_count, transl_ritm, size_of_plot, arr_of_words);
-
             break;
         }
     }
@@ -677,15 +593,27 @@ Errors pulse_maker(Words* arr_of_words_info, int* arr_of_syllable)
     arr_of_words = seporater_finder(transl_ritm, size_of_plot, amount_of_acc, arr_of_words_info, arr_of_syllable, &true_am_of_word);
     check(arr_of_words != nullptr, arg_function_is_nullptr);
 
+    putchar('\n');
+
+    for(int co = 0; co < 20; co++)
+        putchar('#');
+
+    putchar('\n');  
+
     for(int count = 0; count < amount_of_acc; count++)
     {
         kvazi_puts(arr_of_words[count]);
 
-        putchar('\n');
+        putchar(' ');
 
     }
 
-    printf("Enter " GREEN("0") " to continue, " GREEN("any number instead of 0") " for exit\n");
+    putchar('\n');
+
+    for(int co = 0; co < 20; co++)
+        putchar('#');
+
+    putchar('\n');
 
     free(arr_of_words);
     free(transl_ritm);
@@ -707,26 +635,18 @@ Errors string_maker(char** arr_of_words, int am_of_words, int am_of_syll, int *a
         return unknown_error;
     }
 
-    printf(RED("We are in string_maker\n"));
-
     for(int count = 0; count < am_of_words; count++)
     {
         rand = kvazi_random(0, high_board);
-
-        printf("rand = %d on %d circle\n", rand, count + 1);
 
         if(high_board != 0)
         {
             high_board -= rand; 
         }
 
-        printf("high_board = %d on %d circle\n", high_board, count + 1);
-
         arr_of_words[count] = word_search(1 + rand, 0, 20, arr_of_syllable, arr_of_words_info);
 
         cur_syll += rand;
-
-        printf("cur_syll = %d on %d circle\n", cur_syll, count + 1);
     }
 
     int null_count = 0;
@@ -776,10 +696,20 @@ Errors haikku_maker(int *arr_of_syllable, Words *arr_of_words_info)
         cur_word += string_fulling(count, arr_of_words + cur_word, arr_of_haikku_str[count], arr_of_syllable, arr_of_words_info);
     }
 
+    putchar('\n');   
+
+    for(int co = 0; co < 20; co++)
+        putchar('#');        
+
+    putchar('\n');   
+
     for(int count = 0; count < cur_word; count++)
     {
         kvazi_puts(arr_of_words[count]);
     }
+
+    for(int co = 0; co < 20; co++)
+        putchar('#');
 
     putchar('\n');
 
