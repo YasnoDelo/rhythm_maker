@@ -28,4 +28,5 @@ There is result!
 Saddenly haiku is absolutely meaningless. But verse is written by haiku rule: 5-7-5!
 
 If you no longer feel like putting together phrases by pulses and haiku by rules, enter any number instead of 1 or 2 for exit.
+
 **Don't forget to change terminal's encodind on primary!**
