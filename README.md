@@ -4,3 +4,26 @@ First of all, run makefile. After that change in terminal's preferences encoding
 
 After all preparing, run main program "pulse_maker".
 There you will see menu. Chose, what do you want.
+
+![Иллюстрация к проекту](https://github.com/YasnoDelo/X-and-O-game/blob/main/img/launch_menu.png) menu_photo
+
+For example you want to make phrase by its metrical foot. Then you enter 1.
+Use symbol ' for accient syllable and - for syllable without accient. Symbol * should be in the end of input string.
+For example frase "show musto go on" belongs to the class of "''''" scheme. Frase "Intarnational championship" is equal to "--'---'---". Frase "Крашнулся миктрокэп" - to "'----'". Lets choose last scheme for example.
+
+![Иллюстрация к проекту](https://github.com/YasnoDelo/X-and-O-game/blob/main/img/launch_menu.png) result_example
+
+There is result in "#" branches: "смётка  сальмонеллёз". The result converges with the original scheme.
+After running program suggests to continue making phrases by its metrical foot. But aslo you can make haiku. Enter 2:
+
+![Иллюстрация к проекту](https://github.com/YasnoDelo/X-and-O-game/blob/main/img/launch_menu.png) haiku_maker
+
+Enter amount of words in each string. (Remember, that there are maximum 5 words in first and third string and 7 - in second)
+There is result!
+
+![Иллюстрация к проекту](https://github.com/YasnoDelo/X-and-O-game/blob/main/img/launch_menu.png) haiku_result
+
+Saddenly haiku is absolutely meaningless. But verse is written by haiku rule: 5-7-5!
+
+If you no longer feel like putting together phrases by pulses and haiku by rules, enter any number instead of 1 or 2 for exit.
+Ыф
