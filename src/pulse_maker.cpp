@@ -1,27 +1,10 @@
-#include "sup_puls.h"
+#include "../include/sup_puls.h"
 
 int main()
 {
-    time_t check = time(0);
-    struct timespec cho;
-
-    timespec_get(&cho, TIME_UTC);
-
-    printf("cho.tv_sec = %ld, cho.tv_nsec = %ld, check = %ld\n\n", cho.tv_sec, cho.tv_nsec, check);
-
-    double ti_st = 0;
-    double ti_en = 0;
-
-    double bg = 0;
-    double en = 0;
-
-    ti_st = time_searcher();
-
-    printf(GREEN("\n\ntime in the begin of prog  is %lf sec\n\n"), ti_st);
-
-    FILE* info_syllable     = fopen("info_syllable.txt", "rb");
-    FILE* sorted_words      = fopen("out_kir.txt", "rb");
-    FILE* info_about_sorted = fopen("info_about_sorted.txt", "rb");
+    FILE* info_syllable     = fopen("output_files/info_syllable.txt", "rb");
+    FILE* sorted_words      = fopen("output_files/out_kir.txt", "rb");
+    FILE* info_about_sorted = fopen("output_files/info_about_sorted.txt", "rb");
 
     size_t amount_of_words = 0;
     size_t file_elems = 0;
@@ -51,11 +34,7 @@ int main()
 
     bond_make(arr_of_words_info, arr_of_symb, amount_of_words, file_elems);
 
-    bg = time_searcher();
-
-    printf(GREEN("\n\nProg is ready for work %lf sec since start\n\n"), bg - ti_st);
-
-    menu_shower(bg, en, arr_of_words_info, arr_of_syllable);    
+    menu_shower(arr_of_words_info, arr_of_syllable);    
 
     free(arr_of_symb);
     free(arr_of_words_info);
@@ -64,11 +43,6 @@ int main()
     fclose(info_about_sorted);
     fclose(info_syllable);
     fclose(sorted_words);
-
-    ti_en = time_searcher();
-    printf(GREEN("\ntime in the end of prog is %lf sec\n\n"), ti_en);
-
-    printf(RED("prog worked due %lf sec\n"), ti_en - ti_st);
 
     return 0;
 }
